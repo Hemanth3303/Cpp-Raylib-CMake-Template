@@ -1,0 +1,12 @@
+{
+	"version": 8,
+
+	"include": [
+		"cmake/base/presets/windows/windows.json",
+		"cmake/base/presets/linux/linux.json"
+	],
+
+	"configurePresets": [
+
+	]
+}

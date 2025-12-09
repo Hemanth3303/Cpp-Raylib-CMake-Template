@@ -16,10 +16,18 @@ int main(int argc, char** argv) {
 
 	InitWindow(960, 540, "Cpp-Raylib-CMake-Template");
 
+	Vector2 mousePosition;
+	Rectangle rect = { .width = 50, .height = 50 };
+
 	while (!WindowShouldClose()) {
+		mousePosition = GetMousePosition();
+		rect.x = mousePosition.x - (rect.width / 2);
+		rect.y = mousePosition.y - (rect.height / 2);
+
 		BeginDrawing();
 		ClearBackground(BLACK);
 		DrawFPS(10, 10);
+		DrawRectangleRec(rect, RED);
 		EndDrawing();
 	}
 
