@@ -1,4 +1,4 @@
-# Cpp-ConsoleApp-CMake-Template
+# Cpp-Raylib-CMake-Template
 A template for making a Game in C++ with the raylib library using CMake
 
 ## Usage Example
