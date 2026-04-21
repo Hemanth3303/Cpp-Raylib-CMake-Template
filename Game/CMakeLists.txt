@@ -117,6 +117,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 			PUBLIC
 
 			PRIVATE
+
 		)
 		target_link_options(Game
 			PUBLIC
