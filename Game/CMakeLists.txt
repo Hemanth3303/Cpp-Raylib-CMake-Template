@@ -35,6 +35,9 @@ target_compile_definitions(Game
 		GAME
 )
 
+cmake_base_target_platform_definitions(Game GAME)
+cmake_base_target_architecture_definitions(Game GAME)
+
 # PLATFORM AND COMPILER SPECIFIC
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
@@ -46,7 +49,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 			NOMINMAX
 			_CRT_SECURE_NO_WARNINGS
 			WIN32_LEAN_AND_MEAN
-			GAME_PLATFORM_WINDOWS
 	)
 
 	if(MSVC)
@@ -90,13 +92,6 @@ endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 
-	target_compile_definitions(Game
-		PUBLIC
-
-		PRIVATE
-			GAME_PLATFORM_LINUX
-	)
-
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		target_link_libraries(Game
 			PUBLIC
@@ -126,17 +121,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 
 		)
 	endif()
-
-endif()
-
-if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-
-	target_compile_definitions(Game
-		PUBLIC
-
-		PRIVATE
-			GAME_PLATFORM_OSX
-	)
 
 endif()
 
