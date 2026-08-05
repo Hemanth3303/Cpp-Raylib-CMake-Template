@@ -37,6 +37,7 @@ target_compile_definitions(Game
 
 cmake_base_target_platform_definitions(Game GAME)
 cmake_base_target_architecture_definitions(Game GAME)
+cmake_base_apply_sanitizers(Game SANITIZERS ASAN UBSAN CONFIGS Debug)
 
 # PLATFORM AND COMPILER SPECIFIC
 

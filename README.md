@@ -1,6 +1,9 @@
 # Cpp-Raylib-CMake-Template
 A template for making a Game in C++ with the raylib library using CMake
 
+## Note
+ASAN and UBSAN (if available) are enabled for Game in debug build in this template example.
+
 ## Usage Example
 First clone the repo recursively (submodules `cmake/base` and `vendor/raylib`).
 
