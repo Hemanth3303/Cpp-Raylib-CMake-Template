@@ -28,121 +28,14 @@ target_link_libraries(Game
 		raylib
 )
 
-target_compile_definitions(Game
-	PUBLIC
-
-	PRIVATE
-		GAME
-)
-
-cmake_base_target_platform_definitions(Game GAME)
-cmake_base_target_architecture_definitions(Game GAME)
+cmake_base_configure_target(Game)
+cmake_base_apply_target_definitions(Game GAME)
+cmake_base_apply_os_definitions_to_target(Game GAME)
+cmake_base_apply_architecture_definitions_to_target(Game GAME)
+cmake_base_apply_compiler_definitions_to_target(Game GAME)
 cmake_base_apply_sanitizers(Game SANITIZERS ASAN UBSAN CONFIGS Debug)
 
-# PLATFORM AND COMPILER SPECIFIC
-
-if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-
-	target_compile_definitions(Game
-		PUBLIC
-
-		PRIVATE
-			NOMINMAX
-			_CRT_SECURE_NO_WARNINGS
-			WIN32_LEAN_AND_MEAN
-	)
-
-	if(MSVC)
-		target_compile_options(Game
-			PUBLIC
-
-			PRIVATE
-				/Zc:__cplusplus
-				/Zc:preprocessor
-		)
-	elseif(MINGW)
-		target_link_libraries(Game
-			PUBLIC
-				m
-			PRIVATE
-
-		)
-		target_link_options(Game
-			PUBLIC
-
-			PRIVATE
-				-static
-				-static-libgcc
-				-static-libstdc++
-		)
-	elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-		target_link_libraries(Game
-			PUBLIC
-
-			PRIVATE
-		)
-		target_link_options(Game
-			PUBLIC
-
-			PRIVATE
-				-static
-		)
-	endif()
-
-endif()
-
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-
-	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-		target_link_libraries(Game
-			PUBLIC
-				dl
-				m
-				pthread
-			PRIVATE
-
-		)
-		target_link_options(Game
-			PUBLIC
-
-			PRIVATE
-
-		)
-	elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-		target_link_libraries(Game
-			PUBLIC
-
-			PRIVATE
-
-		)
-		target_link_options(Game
-			PUBLIC
-
-			PRIVATE
-
-		)
-	endif()
-
-endif()
-
-# CONFIGURATION SPECIFIC
-
-target_compile_definitions(Game
-	PUBLIC
-
-	PRIVATE
-		$<$<CONFIG:Debug>:GAME_DEBUG_BUILD>
-		$<$<CONFIG:Debug>:DEBUG>
-
-		$<$<CONFIG:Profile>:GAME_PROFILE_BUILD>
-		$<$<CONFIG:Profile>:NDEBUG>
-
-		$<$<CONFIG:Release>:GAME_RELEASE_BUILD>
-		$<$<CONFIG:Release>:NDEBUG>
-)
-
 # POST-BUILD RESOURCE COPY
-
 add_custom_command(
 	TARGET Game POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
