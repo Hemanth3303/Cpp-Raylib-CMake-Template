@@ -12,14 +12,16 @@ Specify a generator manually like so:
 ```bash
 $ cmake -S. -Bbuild -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug
 $ cmake --build build
-$ .\build\windows_x86-64_mingw-w64-gcc\Debug\Game.exe
+$ cd build\windows_x86-64_mingw-w64-gcc\Debug
+$ .\Game.exe
 ```
 Or use a predefined preset. <br>
 For example, to use gcc and makefiles for a debug build on windows x86-64:
 ```bash
 $ cmake --preset=windows_x86-64_debug_mingw-w64_makefiles
 $ cmake --build build
-$ .\build\windows_x86-64_mingw-w64-gcc\Debug\Game.exe
+$ cd build\windows_x86-64_mingw-w64-gcc\Debug
+$ .\Game.exe
 ```
 
 ### Linux example
@@ -27,14 +29,14 @@ Specify a generator manually like so:
 ```bash
 $ cmake -S. -Bbuild -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug
 $ cmake --build build
-$ ./build/linux_x86-64_gnu-gcc/Debug/Game
+$ (cd ./build/linux_x86-64_gnu-gcc/Debug && ./Game)
 ```
 Or use a predefined preset. <br>
 For example, to use gcc and makefiles for a debug build on linux x86-64:
 ```bash
 $ cmake --preset=linux_x86-64_debug_gcc_makefiles
 $ cmake --build build
-$ ./build/linux_x86-64_gnu-gcc/Debug/Game
+$ (cd ./build/linux_x86-64_gnu-gcc/Debug && ./Game)
 ```
 
 Note: Use `cmake --list-presets` to see all available presets
